@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.RealMapper">
+    <insert id="insert" parameterType="com.qf.j1902.pojo.RealInfo">
+        INSERT INTO realinfo(zhanghao,realname,idimg,idnum,email,telnum,zhxx,shxx)
+        VALUES (#{zhanghao},#{realname},#{idimg},#{idnum},#{email},#{telnum},#{zhxx},#{shxx})
+    </insert>
+    <select id="getAll" resultType="com.qf.j1902.pojo.RealInfo">
+        SELECT * FROM realinfo
+    </select>
+    <select id="getOneByzh" parameterType="String" resultType="com.qf.j1902.pojo.RealInfo">
+        SELECT * FROM realinfo WHERE zhanghao=#{zhanghao}
+    </select>
+    <update id="updateShyj" parameterType="com.qf.j1902.pojo.RealInfo">
+        UPDATE realinfo
+        <set>
+                shxx=#{shxx},shyj=#{shyj}
+        </set>
+        WHERE
+        zhanghao=#{zhanghao}
+    </update>
+    <select id="getAllByShxx" resultType="com.qf.j1902.pojo.RealInfo">
+        SELECT * FROM realinfo WHERE shxx="待审核"
+    </select>
+</mapper>

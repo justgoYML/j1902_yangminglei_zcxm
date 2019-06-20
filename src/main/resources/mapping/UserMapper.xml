@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.UserMapper">
+    <select id="getAll" resultType="com.qf.j1902.pojo.UserInfo">
+        SELECT ZHANGHAO,PASSWORD,type  FROM userinfo
+    </select>
+    <insert id="addInfo" parameterType="com.qf.j1902.pojo.UserInfo">
+        INSERT INTO userinfo(zhanghao,password,email,type) VALUES(#{zhanghao},#{password},#{email},#{type})
+    </insert>
+    <select id="findOneByzh" parameterType="String" resultType="com.qf.j1902.pojo.UserInfo">
+        SELECT * FROM userinfo WHERE zhanghao=#{zhanghao}
+    </select>
+    <insert id="addxz" parameterType="com.qf.j1902.pojo.UserInfo">
+        INSERT INTO userinfo(zhanghao,password,email,type,username,img,idcard) VALUES(#{zhanghao},#{password},#{email},#{type},#{username},#{img},#{idcard})
+    </insert>
+    <select id="getAll1" resultType="com.qf.j1902.pojo.UserInfo">
+        SELECT * FROM userinfo
+    </select>
+    <delete id="delByzh" parameterType="String">
+        DELETE FROM userinfo WHERE zhanghao=#{zhanghao}
+    </delete>
+    <select id="getOneById" parameterType="int" resultType="com.qf.j1902.pojo.UserInfo">
+         SELECT * FROM userinfo WHERE id=#{id}
+    </select>
+    <update id="update" parameterType="com.qf.j1902.pojo.UserInfo">
+        UPDATE userinfo 
+        <set>
+            <if test="zhanghao !=''and zhanghao!=null">
+                zhanghao=#{zhanghao},
+            </if>
+            <if test="username !='' and username!=null">
+                username=#{username},
+            </if>
+            <if test="email !=''and email=null">
+                email=#{email}
+            </if>
+        </set>
+         WHERE id=#{id}
+    </update>
+    <select id="getSome" parameterType="String" resultType="com.qf.j1902.pojo.UserInfo">
+        SELECT * FROM userinfo
+        <where>
+            <if test="info != ''">
+                zhanghao LIKE CONCAT(CONCAT('%',#{info}),'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.ProMapper">
+    <insert id="addOneInfo" parameterType="com.qf.j1902.pojo.ProInfo">
+        INSERT INTO zcinfo(zhanghao,proname,protype,proinfo,promoney,proday,simintroduce,introduce,tel,servtel) VALUE
+        (#{zhanghao},#{proname},#{protype},#{promoney},#{proday},#{simintroduce},#{introduce},#{tel},#{servtel})
+    </insert>
+</mapper>
